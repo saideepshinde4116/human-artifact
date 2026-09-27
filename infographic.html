@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When a Technology Changes How We Live</title>
+<style>
+  :root{
+    --bg:#f6f1e8;
+    --paper:#fffdf8;
+    --ink:#252525;
+    --muted:#6e6a63;
+    --line:#ddd4c6;
+    --accent:#6a4f3b;
+    --accent2:#a07c5a;
+    --soft:#eee6da;
+    --shadow:0 12px 35px rgba(46,34,23,.08);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:linear-gradient(180deg,var(--bg),#fbf9f4);
+    color:var(--ink);
+    font-family:Arial,Helvetica,sans-serif;
+  }
+  .page{max-width:1050px;margin:0 auto;padding:48px 22px 60px}
+  .eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:.76rem;font-weight:700;color:var(--accent2)}
+  h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.2rem,5vw,4.2rem);line-height:1.02;margin:12px 0 14px;max-width:840px}
+  .lede{max-width:850px;font-size:1.08rem;line-height:1.7;color:#514d47;margin:0 0 28px}
+  .question{
+    background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--accent);
+    border-radius:16px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:34px
+  }
+  .question strong{display:block;font-family:Georgia,serif;font-size:1.3rem;margin-bottom:6px}
+  .question span{color:var(--muted);line-height:1.6}
+
+  .journey{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0 26px}
+  .step-chip{
+    border:1px solid var(--line);background:rgba(255,253,248,.75);border-radius:14px;padding:13px 10px;text-align:center;
+    color:var(--muted);font-weight:700;font-size:.82rem
+  }
+  .step-chip.active{background:var(--accent);color:white;border-color:var(--accent)}
+
+  .stage-wrap{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:start}
+  .stage-list{display:flex;flex-direction:column;gap:10px;position:sticky;top:20px}
+  .stage-btn{
+    width:100%;text-align:left;border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:14px 15px;cursor:pointer;
+    font-weight:700;color:var(--ink);transition:.15s ease;box-shadow:0 5px 18px rgba(46,34,23,.04)
+  }
+  .stage-btn:hover,.stage-btn:focus{transform:translateY(-1px);border-color:#bda991;outline:none}
+  .stage-btn.active{background:#f0e7dc;border-color:#ae9274}
+  .stage-btn small{display:block;color:var(--muted);font-weight:400;margin-top:4px}
+  .stage-panel{
+    background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:30px 32px;min-height:360px;box-shadow:var(--shadow)
+  }
+  .stage-number{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);font-weight:800}
+  .stage-panel h2{font-family:Georgia,serif;font-size:2rem;margin:8px 0 10px}
+  .stage-panel p{font-size:1rem;line-height:1.75;color:#4e4a45}
+  .fact-box{margin:22px 0;background:var(--soft);border-radius:15px;padding:18px 20px}
+  .fact-box strong{display:block;margin-bottom:5px}
+  .fact-box p{margin:0;font-size:.95rem}
+  .source-line{font-size:.84rem;color:var(--muted);margin-top:18px;line-height:1.55}
+  a{color:var(--accent);font-weight:700}
+
+  .big-idea{margin:38px 0;background:#2b241d;color:#fffaf3;border-radius:22px;padding:30px 32px}
+  .big-idea .label{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:#e4c8a9;font-weight:800}
+  .big-idea h2{font-family:Georgia,serif;font-size:1.95rem;margin:8px 0 10px}
+  .big-idea p{margin:0;line-height:1.75;color:#eadfd4}
+
+  .today{margin-top:34px}
+  .today h2{font-family:Georgia,serif;font-size:2rem;margin-bottom:8px}
+  .today-intro{color:var(--muted);line-height:1.6}
+  .toggle{display:flex;gap:10px;margin:18px 0 16px}
+  .toggle button{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:10px 15px;font-weight:700;cursor:pointer}
+  .toggle button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .today-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+  .today-card h3{margin:0 0 8px;font-size:1.2rem}
+  .today-card p{margin:0;color:#514d47;line-height:1.7}
+
+  details{margin-top:34px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:17px 19px}
+  summary{cursor:pointer;font-weight:800}
+  .sources{color:#55504a;line-height:1.65;font-size:.9rem}
+  footer{margin-top:36px;border-top:1px solid var(--line);padding-top:18px;color:#7a756e;font-size:.82rem;line-height:1.6}
+
+  @media(max-width:760px){
+    .stage-wrap{grid-template-columns:1fr}
+    .stage-list{position:static;display:grid;grid-template-columns:1fr 1fr}
+    .journey{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="eyebrow">Human Artifact · Dev Blog 3</div>
+  <h1>When a Technology Changes How We Live</h1>
+  <p class="lede">The mechanical clock is a useful example of a larger pattern: a technology can begin with a fairly specific purpose, then become part of the routines and systems that shape everyday life.</p>
+
+  <div class="question">
+    <strong>When does a technology stop being just a tool and start changing how we live?</strong>
+    <span>Click through the five stages to follow the shift from a device for measuring time to a technology that helped people coordinate around measured time.</span>
+  </div>
+
+  <div class="journey" aria-label="Infographic stages">
+    <div class="step-chip active" data-chip="0">1 · Purpose</div>
+    <div class="step-chip" data-chip="1">2 · Adoption</div>
+    <div class="step-chip" data-chip="2">3 · Standardization</div>
+    <div class="step-chip" data-chip="3">4 · Time Discipline</div>
+    <div class="step-chip" data-chip="4">5 · Today</div>
+  </div>
+
+  <div class="stage-wrap">
+    <div class="stage-list">
+      <button class="stage-btn active" data-stage="0">Purpose<small>What problem did the technology address?</small></button>
+      <button class="stage-btn" data-stage="1">Adoption<small>What happened as people used it?</small></button>
+      <button class="stage-btn" data-stage="2">Standardization<small>What changed when time became coordinated?</small></button>
+      <button class="stage-btn" data-stage="3">Time discipline<small>How can measurement shape behavior?</small></button>
+      <button class="stage-btn" data-stage="4">Today<small>Where do we see the pattern now?</small></button>
+    </div>
+
+    <section class="stage-panel" aria-live="polite">
+      <div class="stage-number" id="stage-number">Stage 1 of 5</div>
+      <h2 id="stage-title">Purpose: making time measurable</h2>
+      <p id="stage-text"></p>
+      <div class="fact-box">
+        <strong id="fact-title"></strong>
+        <p id="fact-text"></p>
+      </div>
+      <div class="source-line" id="stage-source"></div>
+    </section>
+  </div>
+
+  <div class="big-idea">
+    <div class="label">Module 2 connection</div>
+    <h2>The technology is not the whole story.</h2>
+    <p>The interesting shift is what happens after invention. As a technology is adopted, people build routines and institutions around it. The result can be larger than the original purpose of the device. That is why the history of the clock is also a history of changing human behavior.</p>
+  </div>
+
+  <section class="today">
+    <h2>Then vs. now</h2>
+    <p class="today-intro">Modern technologies do not reproduce the medieval clock exactly, but they can raise a similar question: what happens when a tool becomes part of the system that organizes everyday behavior?</p>
+    <div class="toggle">
+      <button class="today-toggle active" data-view="clock">Mechanical clock</button>
+      <button class="today-toggle" data-view="digital">Digital life</button>
+    </div>
+    <div class="today-card">
+      <h3 id="today-title">Mechanical clock</h3>
+      <p id="today-text">The clock made measured time increasingly available for coordination. Over the long term, clock-based routines became important to institutions and work systems, although historians debate how simple or universal that transition really was.</p>
+    </div>
+  </section>
+
+  <details>
+    <summary>Sources and research notes</summary>
+    <div class="sources">
+      <p><strong>Metropolitan Museum of Art — Time and Time Again: A Selection of European Clocks and Watches.</strong> The Met dates the first mechanical clocks probably to the late thirteenth century, describes their basic weight-driven mechanism, and traces public-clock spread across parts of Europe by the fourteenth century. <a href="https://resources.metmuseum.org/resources/metpublications/pdf/European_Clocks_and_Watches_in_the_Metropolitan_Museum_of_Art.pdf" target="_blank" rel="noopener">Open source</a></p>
+      <p><strong>Metropolitan Museum of Art — Table Clock.</strong> The Met notes evidence for late-thirteenth-century European horologia and documents fourteenth-century surviving large clocks. <a href="https://www.metmuseum.org/art/collection/search/194107" target="_blank" rel="noopener">Open source</a></p>
+      <p><strong>John Scattergood, European Review.</strong> This research article describes the late-thirteenth-century development of the mechanical clock and its rapid spread, and examines how the clock became a reference point for ideas about order and regulation. <a href="https://www.cambridge.org/core/journals/european-review/article/abs/writing-the-clock-the-reconstruction-of-time-in-the-late-middle-ages/520F2C43C875ABD2B95E800A9FB85381B" target="_blank" rel="noopener">Open source</a></p>
+      <p><strong>Cambridge Core — discussions of time discipline and industrialization.</strong> Historical scholarship links later industrial work regimes to more rigid clock-time, while also noting that the transition was gradual and more complicated than a simple “clock arrives, people become disciplined” story. <a href="https://www.cambridge.org/core/journals/china-quarterly/article/time-perception-and-industrialization-divergence-and-convergence-of-work-ethics-in-chinese-enterprises-in-africa/02CCAE7E30F20DC1666C90C1FE170388" target="_blank" rel="noopener">Open source</a></p>
+      <p><strong>Accuracy note:</strong> This infographic separates the documented history of mechanical clocks from the broader interpretive question about how technologies shape routines. It avoids claiming that the clock alone caused modern work discipline.</p>
+    </div>
+  </details>
+
+  <footer>
+    Interactive element: click a stage in the left column or a stage label above. Then use the “Mechanical clock / Digital life” toggle to compare the historical case with a present-day question about technological routines.
+  </footer>
+</div>
+<script>
+const stages = [
+  {
+    title: 'Purpose: making time measurable',
+    text: 'Mechanical clocks emerged in medieval Europe as new kinds of machines for measuring and displaying time. The earliest examples are difficult to identify precisely, but evidence places mechanical clocks in Europe by the late thirteenth century.',
+    factTitle: 'What the evidence shows',
+    factText: 'The Metropolitan Museum of Art describes early European mechanical clocks as weight-driven machines regulated by an escapement. Public clocks became established in parts of Europe during the fourteenth century.',
+    source: 'Source: Metropolitan Museum of Art, “Time and Time Again” and “Table Clock.”'
+  },
+  {
+    title: 'Adoption: the clock becomes shared infrastructure',
+    text: 'A technology becomes socially important when people begin using it repeatedly and building routines around it. Public clocks made measured time more visible outside the machine itself.',
+    factTitle: 'Why adoption matters',
+    factText: 'The historical record shows public clocks spreading across several European regions during the fourteenth century. The important shift is not only that clocks existed, but that they became part of shared coordination.',
+    source: 'Sources: Metropolitan Museum of Art; John Scattergood, European Review.'
+  },
+  {
+    title: 'Standardization: coordination around measured time',
+    text: 'Once measured time becomes a common reference, activities can be coordinated against the same clock. This moves the technology from private measurement toward social organization.',
+    factTitle: 'A change in the relationship with time',
+    factText: 'Scattergood’s historical analysis describes how the clock became a reference point for thinking about order and regulation. This helps explain why a timekeeping device could matter beyond telling someone the hour.',
+    source: 'Source: John Scattergood, “Writing the clock: the reconstruction of time in the late Middle Ages.”'
+  },
+  {
+    title: 'Time discipline: measurement can shape behavior',
+    text: 'The strongest version of the argument appears much later, when industrial work increasingly depended on rigid schedules. Historians have connected clock-time with work discipline, supervision, and the coordination of labor.',
+    factTitle: 'Important qualification',
+    factText: 'This was not an instant transformation caused by the clock alone. Later scholarship describes a gradual and contested transition, especially during industrialization, and points out that older forms of time awareness were more complex than a simple “before clocks / after clocks” story.',
+    source: 'Sources: Cambridge Core scholarship on time discipline and industrialization.'
+  },
+  {
+    title: 'Today: the question survives in digital form',
+    text: 'Today, time is embedded in smartphones, calendars, alarms, reminders, meeting software, and notifications. The historical lesson is not that these technologies are identical to medieval clocks; it is that technologies can become so routine that we stop noticing how much they organize our behavior.',
+    factTitle: 'A question to take forward',
+    factText: 'When a tool becomes infrastructure, do we still experience it as a tool? Or does it become part of the background rules by which we plan, work, and coordinate our lives?',
+    source: 'Interpretive connection to the course theme; historical claims in this section are grounded in the sources listed below.'
+  }
+];
+
+const stageButtons = [...document.querySelectorAll('.stage-btn')];
+const chips = [...document.querySelectorAll('.step-chip')];
+const title = document.getElementById('stage-title');
+const text = document.getElementById('stage-text');
+const factTitle = document.getElementById('fact-title');
+const factText = document.getElementById('fact-text');
+const source = document.getElementById('stage-source');
+const number = document.getElementById('stage-number');
+
+function setStage(i){
+  const s = stages[i];
+  title.textContent = s.title;
+  text.textContent = s.text;
+  factTitle.textContent = s.factTitle;
+  factText.textContent = s.factText;
+  source.textContent = s.source;
+  number.textContent = `Stage ${i+1} of 5`;
+  stageButtons.forEach((b,idx)=>b.classList.toggle('active',idx===i));
+  chips.forEach((c,idx)=>c.classList.toggle('active',idx===i));
+}
+stageButtons.forEach((b,i)=>b.addEventListener('click',()=>setStage(i)));
+chips.forEach((c,i)=>c.addEventListener('click',()=>setStage(i)));
+setStage(0);
+
+const toggleButtons = [...document.querySelectorAll('.today-toggle')];
+const todayTitle = document.getElementById('today-title');
+const todayText = document.getElementById('today-text');
+const todayViews = {
+  clock:{
+    title:'Mechanical clock',
+    text:'The clock made measured time increasingly available for coordination. Over the long term, clock-based routines became important to institutions and work systems, although historians debate how simple or universal that transition really was.'
+  },
+  digital:{
+    title:'Digital life',
+    text:'Digital tools place time directly into everyday software: alarms wake us, calendars schedule us, notifications interrupt us, and shared applications coordinate groups. The comparison raises the same broader question: when technology becomes routine, how visible is its influence on our behavior?'
+  }
+};
+function setView(view){
+  todayTitle.textContent=todayViews[view].title;
+  todayText.textContent=todayViews[view].text;
+  toggleButtons.forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+}
+toggleButtons.forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+</script>
+</body>
+</html>
